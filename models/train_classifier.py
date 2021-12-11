@@ -28,6 +28,7 @@ def load_data(database_filepath):
     df = pd.read_sql_table('Disasters', engine)
     X = df ['message'].values
     y = df.iloc[:,4:]
+    category_names = y.columns
     return X, y, category_names
 
 
