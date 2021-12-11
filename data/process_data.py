@@ -7,7 +7,7 @@ def load_data(messages_filepath, categories_filepath):
     messages = pd.read_csv('disaster_messages.csv')
     
     # load categories dataset
-    categories = pd.rpd.ead_csv('disaster_categories.csv')
+    categories = pd.read_csv('disaster_categories.csv')
     
     # merge datasets
     df = messages.merge(categories,on = 'id')
