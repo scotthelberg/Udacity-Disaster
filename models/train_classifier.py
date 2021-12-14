@@ -24,8 +24,10 @@ from sklearn.model_selection import GridSearchCV
 
 def load_data(database_filepath):
     # load data from database
-    engine = create_engine('sqlite:///Disasters.db')
-    df = pd.read_sql_table('Disasters', engine)
+    engine = create_engine('sqlite:///' + database_filepath)
+    table_name = os.path.basename(database_filepath).split('.')[0]
+    df = pd.read_sql_table(table_name,con=engine)
+    
     X = df ['message'].values
     y = df.iloc[:,4:]
     y=y.astype(int)
