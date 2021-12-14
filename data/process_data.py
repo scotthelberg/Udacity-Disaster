@@ -41,7 +41,7 @@ def clean_data(df):
     
     # concatenate the original dataframe with the new `categories` dataframe
     df = pd.concat([df, categories], axis=1)
-    
+    df.related.replace("2","1",inplace=True)
     # drop duplicates
     df = df.drop_duplicates()
     
