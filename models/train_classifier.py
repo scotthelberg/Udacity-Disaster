@@ -28,6 +28,7 @@ def load_data(database_filepath):
     df = pd.read_sql_table('Disasters', engine)
     X = df ['message'].values
     y = df.iloc[:,4:]
+    y = y.astype(int)
     category_names = y.columns
     return X, y, category_names
 
@@ -57,12 +58,10 @@ def build_model():
         ('clf', MultiOutputClassifier (RandomForestClassifier()))
     ])
     
-    parameters = {
-    'clf__estimator__max_depth': [10, 20],
-    'clf__estimator__n_estimators': [75,200]
-        }
+     parameters = {'vect__ngram_range':((1,1), (1,2))}
+    
 
-    cv = GridSearchCV(pipeline, param_grid=parameters)
+    cv = GridSearchCV(pipeline, param_grid=parameters, cv=2, verbose = 3)
     return cv
 
 
