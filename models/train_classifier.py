@@ -67,13 +67,8 @@ def build_model():
 
 def evaluate_model(model, X_test, Y_test, category_names):
     
-    X_train, X_test, y_train, y_test = train_test_split (X,y)
-
-    pipeline.fit(X_train, y_train)
-
     y_pred = pipeline.predict(X_test)
     
-    i =0
     for col in y_test:
         print('Feature {}:{}'.format(i+1,col))
         print(classification_report(y_test[col],y_pred[:,i]))
