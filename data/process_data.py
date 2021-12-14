@@ -31,7 +31,7 @@ def clean_data(df):
     
     for column in categories:
     # set each value to be the last character of the string
-    categories[column] = categories[column].astype(str).str.split('-').apply(lambda x:x[1]) 
+        categories[column] = categories[column].astype(str).str.split('-').apply(lambda x:x[1]) 
     
     # convert column from string to numeric
     categories[column] = categories[column].astype(int)
@@ -54,7 +54,7 @@ def save_data(df, database_filename):
     table_name = os.path.basename(database_filename).split('.')[0]
     df.to_sql(table_name, engine, index=False,if_exists='replace')
     
-    pass    
+    pass  
 
 
 def main():
