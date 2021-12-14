@@ -65,19 +65,13 @@ def build_model():
     return cv
 
 
-def evaluate_model(model, X_test, Y_test, category_names):
+def evaluate_model(model, X_test, y_test, category_names):
     
-    y_pred = pipeline.predict(X_test)
-    
-    for col in y_test:
-        print('Feature {}:{}'.format(i+1,col))
-        print(classification_report(y_test[col],y_pred[:,i]))
-        i=i+1
-    accuracy = (y_pred == y_test.values).means()
-    print('The model accuracy score is {:.3f}'.format(accuracy))
-    
-    scores(y_test, y_pred)
-    pass
+    #predict classes for X_test
+    prediction = model.predict(X_test)
+
+    #print out model precision, recall and accuracy
+    print(classification_report(y_test, prediction, target_names=category_names))
 
 
 def save_model(model, model_filepath):
