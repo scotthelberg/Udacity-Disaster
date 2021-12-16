@@ -42,8 +42,6 @@ def tokenize(text):
     #remove stop words
     words = [w for w in words if w not in stopwords.words("english")]
     
-    #reduce words to their stems
-    stemmed = [PorterStemmer().stem(w) for w in words]
     
     #reduce words to their root form
     lemmed_words = [WordNetLemmatizer().lemmatize(w) for w in words]
