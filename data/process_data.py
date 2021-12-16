@@ -4,7 +4,8 @@ import os
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
-    # load messages dataset
+    '''Loading and merging relevant datasets.'''
+    #Load messages dataset
     messages = pd.read_csv(messages_filepath)
     
     # load categories dataset
@@ -16,6 +17,7 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    '''Cleaning data for more suitable analysis. Breaking categories into individual columns.'''
     # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(';',expand=True)
     
