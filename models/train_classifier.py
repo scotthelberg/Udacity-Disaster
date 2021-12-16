@@ -22,7 +22,7 @@ from sklearn.metrics import classification_report
 from sklearn.model_selection import GridSearchCV
 import os
 def load_data(database_filepath):
-    # load data from database
+    '''Loading data from database.'''
     engine = create_engine('sqlite:///' + database_filepath)
     table_name = os.path.basename(database_filepath).split('.')[0]
     df = pd.read_sql_table(table_name,con=engine)
@@ -33,13 +33,13 @@ def load_data(database_filepath):
     category_names = y.columns
     return X, y, category_names
 def tokenize(text):
-    #normalize text
+    '''Normalizing text for more useful search.'''
     text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
     
-    #split text into words using NLTK
+    #Spliting text into words using NLTK
     words = word_tokenize (text)
     
-    #remove stop words
+    #Removing stop words
     words = [w for w in words if w not in stopwords.words("english")]
     
     
