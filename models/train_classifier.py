@@ -47,6 +47,7 @@ def tokenize(text):
     lemmed_words = [WordNetLemmatizer().lemmatize(w) for w in words]
     return lemmed_words
 def build_model():
+    '''Building model for analysis.'''
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
@@ -58,12 +59,14 @@ def build_model():
     cv = GridSearchCV(pipeline, param_grid=parameters, cv=2, n_jobs=-1, verbose = 3)
     return pipeline
 def evaluate_model(model, X_test, y_test, category_names):
-    
+   '''Evaluating effectiveness of the model.'''
+
        #   predict classes for X_test
     prediction = model.predict(X_test)
     #   print out model precision, recall and accuracy
     print(classification_report(y_test, prediction, target_names=category_names))
 def save_model(model, model_filepath):
+    '''Saving model.'''
     #filename = 'disasters_model.sav'
     pickle.dump(model,open(model_filepath,'wb'))
     pass
